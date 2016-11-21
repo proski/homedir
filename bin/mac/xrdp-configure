@@ -1,0 +1,8 @@
+#! /bin/sh
+
+# Configure xrdp
+
+set -e
+test -x ./configure || ./bootstrap
+test -x ./configure || exit 1
+./configure CPPFLAGS=-I/usr/local/opt/openssl/include LDFLAGS=-L/usr/local/opt/openssl/lib "$@"

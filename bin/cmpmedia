@@ -1,0 +1,31 @@
+#! /bin/sh
+
+# Compare media to a file
+
+if test "$#" != 2; then
+	echo "Usage: cmpmedia file dev"
+	exit 1
+fi
+
+file1="$1"
+file2="$2"
+file=
+
+if test -f "$file1"; then
+	size1=$(stat -c %s "$file1")
+	file="1"
+fi
+
+if test -f "$file2"; then
+	size2=$(stat -c %s "$file2")
+	file="${file}2"
+fi
+
+case $file in
+1) size="$size1";;
+2) size="$size2";;
+*) echo "This command is only for comparing a regular file to a device"
+   exit 1;;
+esac
+
+exec cmp --print-bytes --bytes="$size" "$file1" "$file2"

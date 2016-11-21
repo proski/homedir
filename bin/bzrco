@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# Clean up bzr working directory
+
+bzr ls -uiR | for i in `cat`; do echo $i; rm -rf $i; done

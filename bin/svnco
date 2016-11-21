@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# Clean up Subversion working directory
+
+svn status --no-ignore | sed -n 's/^[?I]//p' | for i in `cat`; do echo $i; rm -rf $i; done

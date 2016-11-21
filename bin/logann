@@ -1,0 +1,42 @@
+#! /bin/sh
+
+# Create log and annotation for a file
+
+if test $# != 1; then
+	echo "One argument required" >&2
+	exit 1
+fi
+
+if test -f CVS/Entries; then
+	tag=`cat CVS/Entries | sed -n -e 's,/'$1'/.*/T\([^/]*$\),\1,p'`
+	if test -n "$tag"; then
+		tagopt="-r $tag"
+	fi
+	cvs annotate $tagopt $1 >$1.ann
+	cvs log $1 >$1.log
+else
+	if svn info . >/dev/null 2>&1; then
+		svn blame $1 >$1.ann
+		svn log $1 >$1.log
+	else
+		if git show . >/dev/null 2>&1; then
+			git blame -- $1 >$1.ann
+			git log -- $1 >$1.log
+		else
+			if bzr status $1 >/dev/null 2>&1; then
+				bzr annotate $1 >$1.ann
+				bzr log $1 >$1.log
+			else
+				if hg status $1 >/dev/null 2>&1; then
+					hg annotate $1 >$1.ann
+					hg log --follow $1 >$1.log
+				else
+					echo "Not a supported working directory"
+					exit 1
+				fi
+			fi
+		fi
+	fi
+fi
+
+exit 0
