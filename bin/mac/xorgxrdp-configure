@@ -1,0 +1,8 @@
+#! /bin/sh
+
+# Configure xorgxrdp
+
+set -e
+test -x ./configure || ./bootstrap
+test -x ./configure || exit 1
+./configure PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig XRDP_CFLAGS=-I$HOME/src/xrdp/common XRDP_LIBS=" " "$@"

@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# Synchronize "$HOME/Google Drive"
+
+grive -p "$HOME/Google Drive"

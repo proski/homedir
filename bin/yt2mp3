@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# Youtube to mp3
+
+youtube-dl -x --audio-format mp3 --audio-quality 0 "$@"

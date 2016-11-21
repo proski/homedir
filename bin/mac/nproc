@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# nproc implementation for MacOS
+
+sysctl -n hw.ncpu

@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# Remove color ANSI sequences
+
+sed -e 's/[\x1b]\[[0-9]\+m//' "$@"

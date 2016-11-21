@@ -1,0 +1,7 @@
+#! /bin/sh
+
+# Run codespell from its working directory
+
+CODESPELL_DIR="$HOME/src/codespell"
+export PYTHONPATH="$CODESPELL_DIR"
+exec "$CODESPELL_DIR/bin/codespell.py" -D "$CODESPELL_DIR/codespell_lib/data/dictionary.txt" "$@"

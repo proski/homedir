@@ -1,0 +1,32 @@
+#! /bin/sh
+
+# Spellcheck a patch
+
+cat "${1-bug.patch}" | \
+gsed -e '
+# Remove special patch lines
+/^\(-\|@@ \|diff \|new \|index \|+++ \)/d
+# Ignore removed lines
+/^-/d
+# Remove leading "+" and " "
+s/^[ +]//
+# Ignore package statements
+s/^package .*;//
+# Ignore import statements
+s/^import .*;//
+# Treat special characters as spaces
+s/\\[tnr]/ /g
+# Ignore hexadecimal constants
+s/\<0x[0-9A-Fa-f]\+//g
+# Ignore long quoted strings without punctuation
+s/"[A-Za-z0-9%]\{40,\}"//g
+# Ignore ASINs
+s/"B[0-9][A-Z0-9]\{8\}"//g
+# ACRONYMWord -> ACRONYM Word
+s/\([A-Z]\)\([A-Z][a-z]\)/\1 \2/g
+# OneTwo -> One Two
+s/\([a-z]\)\([A-Z]\)/\1 \2/g
+' | \
+aspell --lang=en_US --list | \
+sort -u --ignore-case | \
+less

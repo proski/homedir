@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# Remove timestamps from logs
+
+sed -e 's/^\[[ 0-9.]\+\][ 	]*//' "$@"

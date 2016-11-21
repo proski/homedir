@@ -1,0 +1,44 @@
+#! /bin/sh
+
+# Compile xrdp in several configurations
+
+set -eu
+
+topdir=$HOME/src/xrdp
+cd $topdir
+test -x ./configure || ./bootstrap
+test -x ./configure || exit 1
+
+CONF_FLAGS="--enable-ipv6"
+ARCH_CFLAGS="-m64"
+MAKE_FLAGS="-j4"
+
+SSLOPT="CPPFLAGS=-I/usr/local/opt/openssl/include LDFLAGS=-L/usr/local/opt/openssl/lib"
+
+BIN_DIRS="bin_c bin_cpp bin_gcc bin_gpp"
+rm -rf $BIN_DIRS
+
+for bindir in $BIN_DIRS; do
+  mkdir $bindir
+done
+
+cd $topdir/bin_c
+$topdir/configure $CONF_FLAGS $SSLOPT CC="clang $ARCH_CFLAGS" >LogC1 2>LogC2
+make $MAKE_FLAGS >Log1 2>Log2 &
+
+cd $topdir/bin_cpp
+$topdir/configure $CONF_FLAGS $SSLOPT CC="clang++ $ARCH_CFLAGS" >LogC1 2>LogC2
+make $MAKE_FLAGS >Log1 2>Log2 CPPFLAGS="-x c++ -I/usr/local/opt/openssl/include" &
+
+cd $topdir/bin_gcc
+$topdir/configure $CONF_FLAGS $SSLOPT CC="gcc-6 $ARCH_CFLAGS" >LogC1 2>LogC2
+make $MAKE_FLAGS >Log1 2>Log2 &
+
+cd $topdir/bin_gpp
+$topdir/configure $CONF_FLAGS $SSLOPT CC="g++-6 $ARCH_CFLAGS" >LogC1 2>LogC2
+make $MAKE_FLAGS >Log1 2>Log2 &
+
+cd $topdir
+wait
+ls -al bin_*/LogC2
+ls -al bin_*/Log2

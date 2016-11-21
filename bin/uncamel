@@ -1,0 +1,19 @@
+#! /usr/bin/python
+
+# Split camelCase identifiers
+
+import re
+import sys
+
+def convert(name):
+    # ACRONYMWord -> ACRONYM Word
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1 \2', name)
+    # OneTwo -> One Two
+    return re.sub('([a-z0-9])([A-Z])', r'\1 \2', s1)
+
+def main():
+    for line in sys.stdin:
+        for elem in line.split():
+            print convert(elem)
+
+main()

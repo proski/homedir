@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# Clean up Mercurial working directory
+
+hg --config 'extensions.purge=' purge --all --dirs --files
