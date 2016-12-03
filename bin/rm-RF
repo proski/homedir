@@ -1,0 +1,6 @@
+#! /bin/sh
+
+# Remove recursively, adjust permissions to allow it
+
+chmod -R u+rwx "$@"
+rm -rf "$@"
