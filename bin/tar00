@@ -2,10 +2,10 @@
 
 # Tar wrapper that removes user and group ID from the created archive
 
-: ${TAR=gtar}
+GTAR=gtar
 
 if test $# -lt 2; then
-  exec $TAR "$@"
+  exec $GTAR "$@"
 fi
 
 arg1="$1"
@@ -13,4 +13,4 @@ shift
 arg2="$1"
 shift
 
-exec $TAR "$arg1" "$arg2" --owner=0 --group=0 "$@"
+exec $GTAR "$arg1" "$arg2" --owner=0 --group=0 "$@"
