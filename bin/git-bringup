@@ -1,0 +1,30 @@
+#! /bin/sh
+
+# Rebase branch on top of devel
+
+set -e
+
+if test $# != 1; then
+  echo "Need one argument: branch"
+fi
+
+branch="$1"
+
+# Sanity check of the layout
+git checkout origin/devel --
+git checkout devel --
+
+# Sanity check, create local branch if it's missing
+git checkout "origin/$branch" --
+
+# Checkout needed branch
+git checkout "$branch" --
+
+# Sanity check
+git rebase "origin/$branch"
+
+# Reset to the branch "origin"
+git reset --hard "origin/$branch"
+
+# Rebase on top of devel
+git rebase devel
