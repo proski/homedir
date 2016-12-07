@@ -1,30 +1,43 @@
 #! /bin/sh
 
 # Rebase branch on top of devel
+#
+# Assumptions:
+#
+# origin is our remote
+# upstream in the upstream remote
+# origin/devel tracks upstream/devel
+# origin/devel and upstream/devel are not force-pushed
+# local branches track origin/devel and may be force-pushed to origin
 
 set -e
 
 if test $# != 1; then
   echo "Need one argument: branch"
+  exit 1
 fi
 
 branch="$1"
 
-# Sanity check of the layout
-git checkout origin/devel --
-git checkout devel --
+# Update all remotes
+git fetch --all --prune
 
-# Sanity check, create local branch if it's missing
-git checkout "origin/$branch" --
+# Make sure origin/devel is still up-to-date
+if ! git diff --quiet origin/devel upstream/devel; then
+  echo "origin/devel is not up to date with upstream/devel"
+  exit 1
+fi
 
 # Checkout needed branch
 git checkout "$branch" --
 
-# Sanity check
+# Make sure its upstream exists, rebase on top of it
 git rebase "origin/$branch"
 
-# Reset to the branch "origin"
-git reset --hard "origin/$branch"
+if ! git diff --quiet "$branch" "origin/$branch"; then
+  echo "$branch is not up-to-date with origin/$branch"
+  exit 1
+fi
 
 # Rebase on top of devel
-git rebase devel
+git rebase origin/devel
