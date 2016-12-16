@@ -28,16 +28,20 @@ if ! git diff --quiet origin/devel upstream/devel; then
   exit 1
 fi
 
-# Checkout needed branch
-git checkout "$branch" --
+# Set up local branch if it doesn't exist
+if ! git checkout -b "$branch" -t "origin/$branch" --; then
+  # Checkout the existing branch
+  git checkout "$branch" --
+fi
 
 # Make sure its upstream exists, rebase on top of it
 git rebase "origin/$branch"
 
+# Check if it worked
 if ! git diff --quiet "$branch" "origin/$branch"; then
   echo "$branch is not up-to-date with origin/$branch"
   exit 1
 fi
 
-# Rebase on top of devel
+# Rebase on top of origin/devel
 git rebase origin/devel
