@@ -23,7 +23,7 @@ branch="$1"
 git fetch --all --prune
 
 # Make sure origin/devel is still up-to-date
-if ! git diff --quiet origin/devel upstream/devel; then
+if ! git diff --quiet origin/devel upstream/devel --; then
   echo "origin/devel is not up to date with upstream/devel"
   exit 1
 fi
@@ -38,7 +38,7 @@ fi
 git rebase "origin/$branch"
 
 # Check if it worked
-if ! git diff --quiet "$branch" "origin/$branch"; then
+if ! git diff --quiet "$branch" "origin/$branch" --; then
   echo "$branch is not up-to-date with origin/$branch"
   exit 1
 fi
