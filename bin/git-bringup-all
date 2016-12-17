@@ -1,0 +1,19 @@
+#! /bin/sh
+
+# Update and push all branches other than devel
+
+set -e
+
+if test $# != 0; then
+  echo "No arguments accepted"
+  exit 1
+fi
+
+branches=`git branch -r | sed -n 's,^  origin/,,p' | grep -Ev '(devel|HEAD)'`
+
+for branch in $branches; do
+  git-bringup $branch
+  git push --force
+  git checkout devel
+  git branch -d $branch
+done
