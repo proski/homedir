@@ -1,0 +1,9 @@
+#! /bin/sh
+
+if test "$#" != "1"; then
+  echo "Usage: git-diff-c <commit>"
+  echo "Show diff between commit and its parent"
+  exit 1
+fi
+
+git diff "$1^" "$1" --
