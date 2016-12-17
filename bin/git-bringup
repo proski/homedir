@@ -19,23 +19,16 @@ fi
 
 branch="$1"
 
-# Update all remotes
-git fetch --all --prune
-
 # Make sure origin/devel is still up-to-date
 if ! git diff --quiet origin/devel upstream/devel --; then
   echo "origin/devel is not up to date with upstream/devel"
   exit 1
 fi
 
-# Set up local branch if it doesn't exist
-if ! git checkout -b "$branch" -t "origin/$branch" --; then
-  # Checkout the existing branch
-  git checkout "$branch" --
-fi
-
-# Make sure its upstream exists, rebase on top of it
-git rebase "origin/$branch"
+# Set up local branch to track upstream
+git checkout origin/devel 2>/dev/null
+git branch -D "$branch" || :
+git checkout -b "$branch" -t "origin/$branch" --
 
 # Check if it worked
 if ! git diff --quiet "$branch" "origin/$branch" --; then
