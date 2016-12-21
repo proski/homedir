@@ -27,8 +27,10 @@ fi
 
 # Set up local branch to track upstream
 git checkout origin/devel 2>/dev/null
+git submodule update
 git branch -D "$branch" || :
 git checkout -b "$branch" -t "origin/$branch" --
+git submodule update
 
 # Check if it worked
 if ! git diff --quiet "$branch" "origin/$branch" --; then
@@ -38,3 +40,4 @@ fi
 
 # Rebase on top of origin/devel
 git rebase origin/devel
+git submodule update
