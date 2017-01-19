@@ -13,7 +13,9 @@ branches=`git branch -r | sed -n 's,^  origin/,,p' | grep -Ev '(devel|HEAD)'`
 
 for branch in $branches; do
   git-bringup $branch
-  git push --force
+  if ! git diff --quiet $branch origin/$branch --; then
+    git push --force
+  fi
   git checkout devel
   git branch -d $branch
 done
