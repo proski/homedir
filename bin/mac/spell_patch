@@ -26,6 +26,8 @@ s/"B[0-9][A-Z0-9]\{8\}"//g
 s/\([A-Z]\)\([A-Z][a-z]\)/\1 \2/g
 # OneTwo -> One Two
 s/\([a-z]\)\([A-Z]\)/\1 \2/g
+# Turn punctuation to spaces
+s/[[:punct:]]/ /g
 ' | \
 aspell --lang=en_US --list | \
 sort -u --ignore-case | \
