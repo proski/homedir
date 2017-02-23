@@ -2,8 +2,14 @@
 
 # Update all sources in $HOME/src
 
+if test "$#" = 0; then
+  DIRS="$HOME/src/*/ $HOME/src/*/*/"
+else
+  DIRS="$@"
+fi
+
 trap 'echo Terminated; exit' INT
-for d in $HOME/src/*/ $HOME/src/*/*/; do
+for d in $DIRS; do
   test -d $d || continue
   cd $d || continue
   if test -d CVS; then
