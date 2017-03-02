@@ -2,6 +2,8 @@
 
 # Update all sources in $HOME/src
 
+init_pwd=$(pwd)
+
 if test "$#" = 0; then
   DIRS="$HOME/src/*/ $HOME/src/*/*/"
 else
@@ -10,8 +12,9 @@ fi
 
 trap 'echo Terminated; exit' INT
 for d in $DIRS; do
-  test -d $d || continue
-  cd $d || continue
+  cd "$init_pwd" || continue
+  test -d "$d" || continue
+  cd "$d" || continue
   if test -d CVS; then
     cmd="cvs -z3 -q update -P -d"
   elif test -d .bzr; then
