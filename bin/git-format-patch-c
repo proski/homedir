@@ -1,0 +1,9 @@
+#! /bin/sh
+
+if test "$#" != "1"; then
+  echo "Usage: git-format-patch-c <commit>"
+  echo "Format patch specified by revision"
+  exit 1
+fi
+
+git format-patch "$1^..$1"
