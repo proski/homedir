@@ -1,0 +1,25 @@
+#! /bin/sh
+
+CLANG=clang-4.0
+REMOVE_ARGS="-maccumulate-outgoing-args -fno-delete-null-pointer-checks -falign-jumps=1 -falign-loops=1"
+
+old_args="$@"
+new_args="$CLANG"
+for arg in $old_args; do
+	keep=1
+	for rarg in $REMOVE_ARGS; do
+		if test "$arg" = "$rarg"; then
+			keep=
+			break
+		fi
+	done
+	if test -n "$keep"; then
+		new_args="$new_args $arg"
+	fi
+done
+
+#LOG=~/clang-kernel.log
+#echo "old: $old_args" >>$LOG
+#echo "new: $new_args" >>$LOG
+
+$new_args
