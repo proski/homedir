@@ -1,0 +1,22 @@
+#! /bin/sh
+
+# Run git in all git repositories
+
+set -e -u
+
+top_dir=$(git rev-parse --show-toplevel)
+
+if test -z "$top_dir"; then
+  # git must have shown an error already
+  exit 1
+fi
+
+# Start at the top git level of the current directory
+cd "$top_dir"
+
+for gitdir in $(find . -iname .git); do
+  reldir=$(dirname $gitdir)
+  echo "*** git-recursive: entering $reldir ***"
+  cd "$top_dir/$reldir"
+  git "$@"
+done
