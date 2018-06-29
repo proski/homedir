@@ -1,0 +1,13 @@
+#! /bin/sh
+
+cat "$@" | \
+  grep -v '^+++ ' | \
+  sed -n 's/^+//p' | \
+  LANG=C sed '/"/s/\\n/ /g' | \
+  LANG=C sed 's/\b0[xX][0-9a-fA-F]\+\b//g' | \
+  LANG=C sed 's/\(.\)\([A-Z][a-z]\+\)/\1 \2/g;s/\([a-z0-9]\)\([A-Z]\)/\1 \2/g' | \
+  aspell --lang=en_US list | \
+  aspell --lang=en_GB list | \
+  LANG=en_US hunspell -l | \
+  LANG=en_GB hunspell -l | \
+  sort -u
