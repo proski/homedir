@@ -2,3 +2,4 @@ set line-graphics = utf-8
 set commit-order = default
 set main-options = -n 1000
 bind main S !git format-patch -1 %(commit)
+bind generic D !git difftool --tool=vimdiff --no-prompt --trust-exit-code %(commit)^!
