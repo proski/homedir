@@ -1,0 +1,18 @@
+#! /bin/sh
+
+# Run "git diff" on a single commit, HEAD by default
+
+if test "$#" -gt "1" -o "$1" = "--help"; then
+  echo "Usage: git-diff-1 [<commit>]"
+  echo "Show diff between commit and its parent"
+  echo "HEAD is used by default"
+  exit 1
+fi
+
+if test "$#" -lt "1"; then
+  rev="HEAD"
+else
+  rev="$1"
+fi
+
+git diff "$rev^" "$rev" --
