@@ -1,21 +1,24 @@
 #! /bin/sh
 
+# clang wrapper to compile Linux kernel, mostly to detect warnings
+
+set -e -u
+
 CLANG=clang
 REMOVE_ARGS="-maccumulate-outgoing-args -falign-jumps=1 -falign-loops=1"
 
-old_args="$@"
 new_args="$CLANG"
-for arg in $old_args; do
-	keep=1
-	for rarg in $REMOVE_ARGS; do
-		if test "$arg" = "$rarg"; then
-			keep=
-			break
-		fi
-	done
-	if test -n "$keep"; then
-		new_args="$new_args $arg"
-	fi
+for arg in "$@"; do
+  keep=1
+  for rarg in $REMOVE_ARGS; do
+    if test "$arg" = "$rarg"; then
+      keep=
+      break
+    fi
+  done
+  if test -n "$keep"; then
+    new_args="$new_args $arg"
+  fi
 done
 
 $new_args
