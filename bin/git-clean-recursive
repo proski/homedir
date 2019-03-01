@@ -1,5 +1,7 @@
 #! /bin/sh
 
+# Run "git clean -xdf" in the current git repository and its submodules
+
 set -e
 git clean -xdf
 git submodule foreach --recursive git clean -xdf
