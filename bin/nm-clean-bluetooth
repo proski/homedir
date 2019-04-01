@@ -1,0 +1,7 @@
+#! /bin/sh
+
+# Remove all Bluetooth connections known to NetworkManager
+
+nmcli connection show | \
+awk '$(NF-1) == "bluetooth" {print $(NF-2)}' | \
+xargs --max-args=1 --no-run-if-empty nmcli connection delete
