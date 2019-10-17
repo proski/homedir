@@ -1,0 +1,9 @@
+#! /bin/sh
+
+# Install typical groups on Fedora
+
+sudo dnf group install "$@" \
+  'Fedora Workstation' \
+  'C Development Tools and Libraries' \
+  'Development Tools' \
+
