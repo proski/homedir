@@ -1,0 +1,25 @@
+#! /bin/sh
+
+# Checkout the branch, update to the current upstream
+
+set -e -u
+
+# Write error to stderr and exit with non-zero error code
+fatal() {
+  echo "$@" >&2
+  exit 1
+}
+
+if test "$#" != 1; then
+  fatal "Usage: git-checkout-latest BRANCH"
+fi
+
+local_branch="$1"
+
+upstream_branch="$(git rev-parse --abbrev-ref "$local_branch@{upstream}" 2>/dev/null || :)"
+if test "$upstream_branch" != ""; then
+  git checkout --track -B "$local_branch" "$upstream_branch" --
+  exit $?
+fi
+
+git checkout "$local_branch" --
