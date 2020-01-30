@@ -1,5 +1,7 @@
 #! /bin/sh
 
-# Synchronize "$HOME/Google Drive"
+# Synchronize Google Drive files.
+# Make sure to provide --auth, --id and --secret for the initial run.
 
-grive -p "$HOME/Google Drive"
+GDRIVE_DIR="$HOME/Google Drive"
+grive -p "$GDRIVE_DIR" "$@"
