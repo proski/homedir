@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# Purge configurations of removed Debian packages
+
+dpkg --list | awk "\$1 == \"rc\" {print \$2}" | xargs --no-run-if-empty sudo dpkg --purge
