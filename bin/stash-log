@@ -1,0 +1,58 @@
+#! /bin/sh
+
+# Turn "git log" output into a Stash pull request description.
+# The PR branch must be rebased on top of the target branch.
+
+set -e -u
+
+usage() {
+  echo "Usage: stash-log [BRANCH [TARGET_BRANCH]]"
+  exit 0
+}
+
+target_branch=""
+case $# in
+  0) source_branch="HEAD" ;;
+  1) source_branch="origin/$1" ;;
+  2) source_branch="origin/$1"; target_branch="origin/$2" ;;
+  *) usage ;;
+esac
+
+# Make sure we are in a git repository
+top_dir=$(git rev-parse --show-toplevel)
+
+if test -z "$top_dir"; then
+  # git must have shown an error already
+  exit 1
+fi
+
+# Possible names of the target branch
+TARGET_NAMES="HEAD main master"
+
+if test -z "$target_branch"; then
+  # Guess the target branch as a direct ancestor of the source branch
+  for t in $TARGET_NAMES; do
+    if ! git rev-parse --verify --quiet "origin/$t" -- >/dev/null; then
+      continue
+    fi
+
+    candidate_target_branch="origin/$t"
+    target_hash="$(git rev-parse "$candidate_target_branch")"
+    merge_base_hash="$(git merge-base "$source_branch" "$candidate_target_branch")"
+    if test "$target_hash" = "$merge_base_hash"; then
+      target_branch="$candidate_target_branch"
+      break
+    fi
+  done
+
+  if test -z "$target_branch"; then
+    echo "Cannot guess the target branch" >&2
+    exit 1
+  fi
+fi
+
+revision_range="$target_branch..$source_branch"
+
+git log --reverse "$revision_range" -- | \
+  sed '/^commit/d;/^Author:/d;/^Date:/{N;N;s/.*\n  /*/};s/^ //' | \
+  less
