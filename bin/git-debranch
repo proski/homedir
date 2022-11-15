@@ -1,0 +1,10 @@
+#! /bin/sh
+
+# Remove all git branches except the current one.
+# It is assumed that StGit is installed.
+
+for branch in $(git branch --no-column | sed '/^[*]/d;s/[.]stgit$//' | sort -u); do
+  branch_sha="$(git rev-parse "$branch")"
+  echo "Deleting branch $branch_sha $branch"
+  stg branch --delete "$branch"
+done
