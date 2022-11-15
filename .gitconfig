@@ -1,0 +1,23 @@
+[core]
+	editor = mcedit
+[pull]
+	ff = only
+[push]
+	default = simple
+[merge]
+	conflictstyle = diff3
+[rerere]
+	enabled = true
+[user]
+	name = Pavel Roskin
+	email = plroskin@gmail.com
+[stgit]
+	pager = cdiff
+[tig]
+	line-graphics = utf-8
+	commit-order = default
+	main-options = -n 5000
+	main-view-commit-title-graph = v2
+[tig "bind"]
+	generic = D !git difftool --tool=vimdiff --no-prompt --trust-exit-code %(commit)^!
+	main = S !git format-patch -1 %(commit)
