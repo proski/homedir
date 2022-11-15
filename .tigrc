@@ -3,3 +3,14 @@ set commit-order = default
 set main-options = -n 1000
 bind main S !git format-patch -1 %(commit)
 bind generic D !git difftool --tool=vimdiff --no-prompt --trust-exit-code %(commit)^!
+color "---"			33	default
+color "index "			33	default
+color "diff-tree "		33	default
+color "Merge: "			33	default
+color "parent "			33	default
+color "tree "			33	default
+color date			33	default
+color grep.file			33	default
+color help-group		33	default
+color diff-stat			33	default
+color graph-commit		33	default
