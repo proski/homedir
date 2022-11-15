@@ -1,0 +1,12 @@
+#! /bin/bash
+
+# Update remote systems
+
+for s in wa-z6-2501; do
+  echo -n $s:
+  ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $s '\
+    sudo apt-get update; \
+    sudo apt-get full-upgrade -y --purge --autoremove; \
+    sudo apt-get autoremove -y --purge \
+    '
+done
