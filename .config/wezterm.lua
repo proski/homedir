@@ -4,8 +4,10 @@ return {
   bypass_mouse_reporting_modifiers = 'SHIFT',
   hide_mouse_cursor_when_typing = false,
 
+  canonicalize_pasted_newlines = "CarriageReturn",
+
   font = wezterm.font 'JetBrains Mono',
-  font_size = 15,
+  font_size = 12,
 
   mouse_bindings = {
     { event = { Down = { streak = 1, button = 'Left' } }, mods = 'SHIFT', action = act.SelectTextAtMouseCursor('Cell'), },
