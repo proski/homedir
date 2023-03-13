@@ -7,7 +7,7 @@ return {
   canonicalize_pasted_newlines = "CarriageReturn",
 
   font = wezterm.font 'JetBrains Mono',
-  font_size = 12,
+  font_size = 13,
 
   mouse_bindings = {
     { event = { Down = { streak = 1, button = 'Left' } }, mods = 'SHIFT', action = act.SelectTextAtMouseCursor('Cell'), },
@@ -25,7 +25,7 @@ return {
     -- The default text color
     foreground = '#d0cfcc',
     -- The default background color
-    background = '#171421',
+    background = 'black',
 
     -- Overrides the cell background color when the current cell is occupied by the
     -- cursor and the cursor style is set to Block
