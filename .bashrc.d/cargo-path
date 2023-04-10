@@ -1,5 +1,0 @@
-# Add $HOME/.cargo/bin to $PATH if not already there
-
-if ! [[ ":$PATH:" =~ ":$HOME/.cargo/bin:" ]]; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi

@@ -1,0 +1,23 @@
+#! /bin/bash
+
+# Add directories matching ~/.*/bin and ~/.opt/*/bin to PATH.
+# This recognizes directories ~/.local/bin, ~/.cargo/bin
+# and ~/.opt/some_package/bin where user-installed binaries
+# are typically found.
+
+for maybe_path in ~/.*/bin ~/.opt/*/bin; do
+    # Exclude non-directories.
+    test -d "$maybe_path" || continue
+    # Exclude non-canonical names.
+    case $maybe_path in
+    */./*|*/../*)
+        continue;;
+    esac
+    # Add to PATH unless already in PATH
+    case :$PATH: in
+    *:$maybe_path:*)
+        continue;;
+    *)
+        PATH="$maybe_path:$PATH";;
+    esac
+done
