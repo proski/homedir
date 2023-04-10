@@ -1,6 +1,8 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 return {
+  default_prog = { 'powershell.exe' },
+
   bypass_mouse_reporting_modifiers = 'SHIFT',
   hide_mouse_cursor_when_typing = false,
 
