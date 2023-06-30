@@ -1,23 +1,18 @@
 #! /bin/bash
 
-# Add directories matching ~/.*/bin and ~/.opt/*/bin to PATH.
-# This recognizes directories ~/.local/bin, ~/.cargo/bin
-# and ~/.opt/some_package/bin where user-installed binaries
-# are typically found.
+# Add directories matching ~/.*/bin to PATH.
+# This recognizes directories like ~/.local/bin and ~/.cargo/bin
+# where user-installed binaries are typically found.
+# If the directory is in PATH already, it is moved to the front.
 
-for maybe_path in ~/.*/bin ~/.opt/*/bin; do
+for pathdir in ~/.*/bin; do
     # Exclude non-directories.
-    test -d "$maybe_path" || continue
+    test -d "$pathdir" || continue
     # Exclude non-canonical names.
-    case $maybe_path in
+    case $pathdir in
     */./*|*/../*)
         continue;;
     esac
-    # Add to PATH unless already in PATH
-    case :$PATH: in
-    *:$maybe_path:*)
-        continue;;
-    *)
-        PATH="$maybe_path:$PATH";;
-    esac
+    # Prepend to PATH, remove existing occurrences.
+    PATH="$pathdir$(echo :$PATH: | sed "s%:$pathdir:%:%g;s/:$//")"
 done
