@@ -1,0 +1,21 @@
+" Load the default vim settings 
+source $VIMRUNTIME/defaults.vim
+
+" Enable syntax highlighting
+syntax on
+
+" Show cursor position
+set ruler
+
+" Enable mouse support
+set mouse=a
+
+" Enable autoindent
+set autoindent
+filetype indent on
+filetype plugin indent on
+set smartindent
+set shiftwidth=4
+
+" Remap :X to :x
+cnoreabbrev <expr> X (getcmdtype() is# ':' && getcmdline() is# 'X') ? 'x' : 'X'
