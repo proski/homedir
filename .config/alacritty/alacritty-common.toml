@@ -27,17 +27,20 @@ background = "#000000"
 foreground = "#d0cfcc"
 
 [font]
-size = 16.0
-
-[font.normal]
-family = "JetBrains Mono"
-style = "Medium"
+normal.family = "JetBrains Mono"
+normal.style = "Regular"
+bold.family = "JetBrains Mono"
+bold.style = "Bold"
+italic.family = "Courier"
+italic.style = "Italic"
+bold_italic.family = "Courier"
+bold_italic.style = "Bold Italic"
 
 [selection]
 save_to_clipboard = true
 
-[window]
-startup_mode = "Windowed"
-
-[shell]
-program = "/opt/homebrew/bin/tmux"
+[[keyboard.bindings]]
+key = "O"
+mods = "Super"
+mode = "~Vi"
+action = "CreateNewWindow"

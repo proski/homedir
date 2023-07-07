@@ -1,0 +1,10 @@
+import = ["~/.config/alacritty/alacritty-common.toml"]
+
+[font]
+size = 16.0
+
+[shell]
+program = "/opt/homebrew/bin/tmux"
+
+[window]
+startup_mode = "Maximized"
