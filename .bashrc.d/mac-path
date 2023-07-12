@@ -1,11 +1,9 @@
 #! /bin/bash
 
-# Add directories matching ~/.*/bin to PATH.
-# This recognizes directories like ~/.local/bin and ~/.cargo/bin
-# where user-installed binaries are typically found.
+# Add directories to PATH.
 # If the directory is in PATH already, it is moved to the front.
 
-for pathdir in ~/.*/bin; do
+for pathdir in /opt/homebrew/bin; do
     # Exclude non-directories.
     test -d "$pathdir" || continue
     # Exclude non-canonical names.

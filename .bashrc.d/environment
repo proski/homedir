@@ -1,5 +1,0 @@
-export EDITOR=mcedit
-export GITHUB_USER=proski
-export MINICOM='-c on'
-export PAGER=less
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig

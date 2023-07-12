@@ -1,0 +1,4 @@
+alias find=/opt/homebrew/bin/gfind
+alias locate=/opt/homebrew/bin/glocate
+alias updatedb=/opt/homebrew/bin/gupdatedb
+alias xargs=/opt/homebrew/bin/gxargs
