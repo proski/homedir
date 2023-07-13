@@ -40,7 +40,13 @@ bold_italic.style = "Bold Italic"
 save_to_clipboard = true
 
 [[keyboard.bindings]]
-key = "O"
+key = "N"
 mods = "Super"
 mode = "~Vi"
 action = "CreateNewWindow"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Super"
+mode = "~Vi"
+action = "Paste"
