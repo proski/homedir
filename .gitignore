@@ -1,6 +1,0 @@
-*.flags
-*.lo
-*.la
-.depend
-.deps
-.libs
