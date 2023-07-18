@@ -1,5 +1,5 @@
 [core]
-	editor = mcedit
+	editor = vi
 [pull]
 	ff = only
 [push]
@@ -10,7 +10,5 @@
 	enabled = true
 [user]
 	name = Pavel Roskin
-[stgit]
-	pager = cdiff
 [init]
 	defaultBranch = main
