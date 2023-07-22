@@ -1,0 +1,12 @@
+import = ["~/.config/alacritty/alacritty-common.toml"]
+
+[font]
+size = 15.0
+
+[shell]
+program = "/usr/bin/tmux"
+
+[window]
+startup_mode = "Windowed"
+dimensions.columns = 120
+dimensions.lines = 36
