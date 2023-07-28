@@ -1,3 +1,4 @@
 alias gtl='cd $(git rev-parse --show-toplevel)'
 alias vi=nvim
 alias vim=nvim
+alias minicom="minicom -c on"
