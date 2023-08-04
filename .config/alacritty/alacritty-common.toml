@@ -50,3 +50,7 @@ key = "V"
 mods = "Super"
 mode = "~Vi"
 action = "Paste"
+
+[debug]
+log_level = "Warn"
+persistent_logging = false
