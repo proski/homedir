@@ -36,6 +36,10 @@ italic.style = "Italic"
 bold_italic.family = "Courier"
 bold_italic.style = "Bold Italic"
 
+[window]
+startup_mode = "Maximized"
+decorations_theme_variant = "Dark"
+
 [selection]
 save_to_clipboard = true
 
