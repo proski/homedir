@@ -11,3 +11,6 @@ set expandtab
 imap <C-a> <ESC>I
 imap <C-d> <DEL>
 imap <C-e> <ESC>A
+
+" Enable mouse in all modes
+set mouse=a
