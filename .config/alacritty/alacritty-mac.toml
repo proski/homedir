@@ -4,7 +4,7 @@ import = ["~/.config/alacritty/alacritty-common.toml"]
 size = 16.0
 
 [shell]
-program = "/Users/pavelroskin/.local/bin/tmux"
+program = "/opt/homebrew/bin/tmux"
 
 [window]
 startup_mode = "Maximized"
