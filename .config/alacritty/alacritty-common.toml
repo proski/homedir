@@ -28,13 +28,6 @@ foreground = "#d0cfcc"
 
 [font]
 normal.family = "JetBrains Mono"
-normal.style = "Regular"
-bold.family = "JetBrains Mono"
-bold.style = "Bold"
-italic.family = "Courier"
-italic.style = "Italic"
-bold_italic.family = "Courier"
-bold_italic.style = "Bold Italic"
 
 [window]
 startup_mode = "Maximized"
