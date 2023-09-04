@@ -1,0 +1,48 @@
+#! /bin/bash
+
+set -e 
+
+if test "$#" != 1; then
+    echo "One argument required: PDF file" >&2
+    exit 1
+fi
+
+infile="$1"
+
+title="Decorative Freestanding Wood Trees in Various Sizes Hand-Painted Autumn Decor for Mantel or Tabletop"
+
+declare -A counters
+in_entry=
+pdftotext "$infile" "$infile.txt"
+while read -r line; do
+    if test -n "$in_entry"; then
+        case "$line" in
+            *\ x\ \$[0-9]*)
+                number=${line// x */}
+                ;;
+            *Height:*)
+                height=${line//Height: /}
+                ;;
+            *Color:*)
+                in_entry=
+                color=${line//Color: /}
+                ((counters["${color} ${height}"] += number))
+                ;;
+            *)
+                ;;
+        esac
+        continue
+    fi
+    case $line in
+        *${title}*)
+            in_entry=1
+            ;;
+        *)
+            continue
+            ;;
+    esac
+done < "$infile.txt"
+
+for counter in "${!counters[@]}"; do
+    echo "$counter: ${counters[$counter]}"
+done | sort

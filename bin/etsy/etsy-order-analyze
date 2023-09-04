@@ -1,0 +1,30 @@
+#! /bin/bash
+
+set -e -u
+
+if test "$#" != 1; then
+    echo "One argument required: PDF file" >&2
+    exit 1
+fi
+
+infile="$1"
+
+parents=("Mom" "Dad")
+circles=("9 inch" "10 inch" "11 inch")
+
+for parent in "${parents[@]}"; do
+    for circle in "${circles[@]}"; do
+        echo -n "$parent circle $circle: "
+        pdfgrep -c "Gift for $parent\b.*\bSize: $circle" "$infile" || :
+    done
+done
+
+boards=("7 x 10" "8 x 11" "10 x 15")
+colors=("Charcoal" "Natural")
+
+for b in "${boards[@]}"; do
+    for c in "${colors[@]}"; do
+        echo -n "Board $b $c: "
+        pdfgrep -c "Size: $b.*Color: $c" "$infile" || :
+    done
+done

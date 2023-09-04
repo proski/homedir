@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pdfgrep -n 'Marked as gift' $1  | sed 's/:.*//;s/$/,/' | awk '!/0$/{printf $0}/0$/'
