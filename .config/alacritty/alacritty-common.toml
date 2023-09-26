@@ -48,6 +48,12 @@ mods = "Super"
 mode = "~Vi"
 action = "Paste"
 
+[[mouse.bindings]]
+mouse = "Middle"
+mods = "Shift"
+mode = "~Vi"
+action = "Paste"
+
 [debug]
 log_level = "Warn"
 persistent_logging = false
