@@ -1,0 +1,5 @@
+XTerm*background: black
+XTerm*foreground: gray85
+XTerm*faceName: JetBrains Mono
+XTerm*faceSize: 13
+XTerm*termName: xterm-256color
