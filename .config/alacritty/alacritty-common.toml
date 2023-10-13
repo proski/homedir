@@ -22,6 +22,11 @@ action = "Paste"
 
 [[mouse.bindings]]
 mouse = "Middle"
+mode = "~Vi"
+action = "None"
+
+[[mouse.bindings]]
+mouse = "Middle"
 mods = "Shift"
 mode = "~Vi"
 action = "Paste"
