@@ -6,6 +6,9 @@ size = 15.0
 [shell]
 program = "/usr/bin/tmux"
 
+[env]
+prompt_color_force = "1"
+
 [window]
 startup_mode = "Windowed"
 dimensions.columns = 120
