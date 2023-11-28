@@ -16,6 +16,9 @@ set shiftwidth=4
 " Insert spaces when Tab is pressed
 set expandtab
 
+" Adjust indent rules for Nix files
+autocmd FileType nix setlocal shiftwidth=2 softtabstop=2 expandtab
+
 " Add support for Ctrl keys in insert more
 imap <C-a> <ESC>I
 imap <C-d> <DEL>
