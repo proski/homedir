@@ -1,14 +1,11 @@
--- Install Packer is not already installed
-require("ensure_packer")
-
 -- Load plugins
-require("plug")
+require("lazy_plugins")
 
 -- Mason setup
 require("mason").setup()
 require("mason-lspconfig").setup()
 
--- Rust tool setup
+-- Rust tools setup
 local rt = require("rust-tools")
 rt.setup({
     server = {
