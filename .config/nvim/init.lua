@@ -1,5 +1,28 @@
+-- Install Packer is not already installed
+require("ensure_packer")
+
+-- Load plugins
+require("plug")
+
+-- Mason setup
+require("mason").setup()
+require("mason-lspconfig").setup()
+
+-- Rust tool setup
+local rt = require("rust-tools")
+rt.setup({
+    server = {
+        on_attach = function(_, bufnr)
+            -- Hover actions
+            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+            -- Code action groups
+            vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+        end,
+    },
+})
+
 -- Enable cursor wrapping
-vim.opt.whichwrap = vim.opt.whichwrap + "<,>,h,l,[,]"
+vim.opt.whichwrap:append("<,>,h,l,[,]")
 
 -- Show existing tabs as 8 spaces
 vim.opt.tabstop = 8
