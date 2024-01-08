@@ -37,8 +37,3 @@ vim.opt.mouse = "a"
 vim.cmd([[
 cnoreabbrev <expr> X ((getcmdtype() is# ':' && getcmdline() is# 'X')?('x'):('X'))
 ]])
-
--- Add support for bash/emacs Ctrl keys in insert mode
-vim.api.nvim_set_keymap("i", "<C-a>", "<ESC>0i", { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-d>", "<DEL>", { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-e>", "<ESC>A", { noremap = true })
