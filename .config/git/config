@@ -10,5 +10,6 @@
 	enabled = true
 [user]
 	name = Pavel Roskin
+	email = plroskin@gmail.com
 [init]
 	defaultBranch = main
