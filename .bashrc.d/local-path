@@ -14,5 +14,5 @@ for pathdir in ~/.*/bin; do
         continue;;
     esac
     # Prepend to PATH, remove existing occurrences.
-    PATH="$pathdir$(echo :$PATH: | sed "s%:$pathdir:%:%g;s%:$%%")"
+    PATH="$pathdir$(echo :"$PATH": | sed "s%:$pathdir:%:%g;s%:$%%")"
 done
