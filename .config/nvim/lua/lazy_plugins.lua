@@ -11,8 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
-
 return require("lazy").setup({
     -- Mason, the Neovim package manager
     "williamboman/mason.nvim",
@@ -22,7 +20,11 @@ return require("lazy").setup({
     "neovim/nvim-lspconfig",
 
     -- Rust tools
-    "simrat39/rust-tools.nvim",
+    {
+        "mrcjkb/rustaceanvim",
+        version = "^3", -- Recommended
+        ft = { "rust" },
+    },
 
     -- Completion framework
     "hrsh7th/nvim-cmp",
