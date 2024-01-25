@@ -1,5 +1,5 @@
--- Leader key
-vim.g.mapleader = "\\"
+-- Set leader key
+vim.api.nvim_set_var("mapleader", "\\")
 
 -- Load plugins
 require("lazy_plugins")
@@ -8,25 +8,23 @@ require("lazy_plugins")
 require("mason").setup()
 require("mason-lspconfig").setup()
 
--- nvim-lspconfig.lua
+-- Load LSP defaults from nvim-lspconfig.lua
 require("nvim-lspconfig")
 
 -- Enable cursor wrapping
-vim.opt.whichwrap:append("<,>,h,l,[,]")
-
--- Show existing tabs as 8 spaces
-vim.opt.tabstop = 8
+vim.api.nvim_set_option("whichwrap", "b,s,<,>,[,]")
 
 -- Use 4 spaces when indenting with '>'
-vim.opt.shiftwidth = 4
+vim.api.nvim_set_option("shiftwidth", 4)
 
 -- Insert spaces when Tab is pressed
-vim.opt.expandtab = true
+vim.api.nvim_set_option("expandtab", true)
 
 -- Enable mouse in all modes
-vim.opt.mouse = "a"
+vim.api.nvim_set_option("mouse", "a")
 
--- Remap :X to :x
+-- Remap :Q and :X to lower case
 vim.cmd([[
-cnoreabbrev <expr> X ((getcmdtype() is# ':' && getcmdline() is# 'X')?('x'):('X'))
+cnoreabbrev <expr> Q ((getcmdtype() . getcmdline() is# ':Q')?('q'):('Q'))
+cnoreabbrev <expr> X ((getcmdtype() . getcmdline() is# ':X')?('x'):('X'))
 ]])
