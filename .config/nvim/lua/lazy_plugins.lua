@@ -11,7 +11,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-return require("lazy").setup({
+require("lazy").setup({
+    -- Color scheme
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+
     -- Mason, the Neovim package manager
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -39,4 +47,8 @@ return require("lazy").setup({
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-buffer",
     "hrsh7th/vim-vsnip",
+}, {
+    install = {
+        colorscheme = { "tokyonight-night" },
+    },
 })
