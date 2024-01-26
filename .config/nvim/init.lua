@@ -6,7 +6,9 @@ require("lazy_plugins")
 
 -- Mason setup
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "rust_analyzer" },
+})
 
 -- Load LSP defaults from nvim-lspconfig.lua
 require("nvim-lspconfig")
