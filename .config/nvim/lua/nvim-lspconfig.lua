@@ -3,6 +3,15 @@
 
 -- Setup language servers.
 local lspconfig = require("lspconfig")
+lspconfig.nil_ls.setup({
+    settings = {
+        ["nil"] = {
+            formatting = {
+                command = { "alejandra" },
+            },
+        },
+    },
+})
 lspconfig.pyright.setup({})
 lspconfig.rust_analyzer.setup({
     -- Server-specific settings. See `:help lspconfig-setup`
