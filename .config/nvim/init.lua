@@ -10,7 +10,7 @@ vim.cmd([[colorscheme tokyonight-night]])
 -- Mason setup
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "rust_analyzer" },
+	ensure_installed = { "rust_analyzer" },
 })
 
 -- Load LSP defaults from nvim-lspconfig.lua
