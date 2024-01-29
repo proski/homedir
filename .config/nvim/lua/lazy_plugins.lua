@@ -30,7 +30,7 @@ require("lazy").setup({
 	-- Rust tools
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^3", -- Recommended
+		version = "^4", -- Recommended
 		ft = { "rust" },
 	},
 
