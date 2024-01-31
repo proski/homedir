@@ -33,3 +33,6 @@ vim.cmd([[
 cnoreabbrev <expr> Q ((getcmdtype() . getcmdline() is# ':Q')?('q'):('Q'))
 cnoreabbrev <expr> X ((getcmdtype() . getcmdline() is# ':X')?('x'):('X'))
 ]])
+
+vim.api.nvim_set_option("spelllang", "en_us")
+vim.api.nvim_set_option("spell", true)
