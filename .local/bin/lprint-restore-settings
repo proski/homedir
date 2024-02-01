@@ -1,0 +1,8 @@
+#! /bin/bash
+
+# Restore label printer settings.
+# Useful if the lprint server forgets them.
+
+set -e -u
+
+lprint modify -d LabelPrinter -o print-speed=4in -o printer-darkness=70
