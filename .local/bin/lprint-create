@@ -7,5 +7,5 @@
 set -e -u
 
 lprint delete -d LabelPrinter || :
-lprint add -d LabelPrinter -m tspl_203dpi -v 'usb://Munbyn%20/ITPP941?serial=9412033000184' -o print-speed=4in -o printer-darkness=70
+lprint add -d LabelPrinter -m tspl_203dpi -v 'usb://Munbyn%20/ITPP941?serial=9412033000184' -o print-speed=4in -o print-darkness=-30
 lprint default -d LabelPrinter
