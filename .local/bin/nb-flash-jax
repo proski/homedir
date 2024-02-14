@@ -1,0 +1,9 @@
+#! /bin/bash
+
+set -eu
+
+cd "$HOME/src/mono/components/imager-os"
+nix build .#flash-devkit -j16 "$@"
+echo "Put the devkit in the recovery mode now"
+sudo -k
+sudo result/bin/flash-jetson

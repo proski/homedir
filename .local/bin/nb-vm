@@ -1,0 +1,7 @@
+#! /bin/bash
+
+set -eu
+
+cd "$HOME/src/mono/components/imager-os"
+nix build .#vm -j16 "$@"
+nix run .#vm
