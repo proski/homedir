@@ -1,20 +1,7 @@
 set line-graphics = utf-8
 set commit-order = default
-set main-options = -n 1000
+set main-options = -n 2500
 set mouse = 1
 
 bind main S !git format-patch -1 %(commit)
 bind generic D !git difftool --tool=vimdiff --no-prompt --trust-exit-code %(commit)^!
-
-color "---" yellow default
-color "index " yellow default
-color "\ No newline at end of file" default default
-color "diff-tree " default default
-color "Merge: " default default
-color "parent " default default
-color "tree " default default
-color date default default
-color grep.file default default
-color help-group default default
-color diff-stat default default
-color graph-commit default default
