@@ -2,7 +2,12 @@
 
 set -eu
 
+NIXFLAGS=("-j$(nproc)")
+if test "$(uname -m)" != x86_64; then
+    NIXFLAGS+=("--impure")
+fi
+
 cd "$HOME/src/mono/components/imager-os"
-nix build .#imager-build -j16 "$@"
+nix build "${NIXFLAGS[@]}" .#imager-build "$@"
 nix path-info --recursive ./result | xargs nix-store --export > export.nar
 zstd export.nar

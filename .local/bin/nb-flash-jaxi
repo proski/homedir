@@ -2,8 +2,13 @@
 
 set -eu
 
+NIXFLAGS=("-j$(nproc)")
+if test "$(uname -m)" != x86_64; then
+    NIXFLAGS+=("--impure")
+fi
+
 cd "$HOME/src/mono/components/imager-os"
-nix build .#flash-imager -j16 "$@"
+nix build "${NIXFLAGS[@]}" .#flash-imager "$@"
 echo "Put the imager in the recovery mode now"
 sudo -k
 sudo result/bin/flash-jetson
