@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 # Recreate label printer from scratch.
 # The lprint server must be running.
